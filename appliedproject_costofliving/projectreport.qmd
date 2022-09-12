@@ -1,0 +1,87 @@
+---
+title: "Module 10: Data Science for Policy: Changes to Household Spending"
+#runningheader: "Module 10: Data Science for Policy" # only for pdf output
+subtitle: "How has proportional household spending changed for the highest and lowest deciles of households?" # only for html output
+author: "Thomas Wise"
+date: "`r Sys.Date()`"
+format: 
+  html: default
+---
+
+```{r setup, include=FALSE}
+library(tufte)
+# invalidate cache when the tufte version changes
+knitr::opts_chunk$set(cache.extra = packageVersion('tufte'))
+options(htmltools.dir.version = FALSE)
+
+source("rsource_file.R")
+```
+
+---
+
+### Report Headlines: 
+
+- Both the highest and lowest decile of households surveyed experienced large increases (>0.025) in proportional household spending in the **Food & Drinks (COICOP 1.0.0)**, and **Housing, fuel & power (COICOP 4.0.0)**.
+- Both the highest and lowest decile of households surveyed experience large decreases (>0.025) in proportional household spending in **Transport (COICOP 7.0.0)**, **Recreation & Culture (COICOP 9.0.0)** and **Restaurants & Hotels (COICOP 11.0.0)**
+- The highest decile of household also experience large increases (>0.025) in proportional household spending in **Education (COICOP 10.0.0)**
+
+## Report Summary
+
+This project will explore and identify changes to household spending between 2020 and 2021, focusing on the changes to proportional household expenditure to different Commodity and Service Areas, similar to those reported in the [COICOP](<https://unstats.un.org/unsd/classifications/unsdclassifications/COICOP_2018_-_pre-edited_white_cover_version_-_2018-12-26.pdf>). Specifically, this project will focus on those households which represent the highest and lowest gross income deciles, surveyed as part of the [Living Costs and Food Survey](<https://www.ons.gov.uk/peoplepopulationandcommunity/personalandhouseholdfinances/expenditure/datasets/familyspendingworkbook1detailedexpenditureandtrends#>). With these being selected to understand the similarities and differences in spending between households with such a disparity in income.  
+
+To understand the changes in spending between 2020 and 2021, an exploratory data analysis (EDA) was conducted. Where it was decided that comparisons could only be effectively made between deciles through converting gross spending on services to percentile proportions. Since although a gross spending increase of £100 would be equal if comparing changes in gross spending, this £100 change would likely represent a difference in proportion of available gross income for both deciles, resulting in an overall different interpretation when examining these household deciles.  Therefore through converting gross spending to a percentage (dividing total gross income by each Commodity or Service area), comparisons can be made effectively. 
+
+Once manipulated and cleaned, data was visualized so relationships between households by year could be assessed. With assessments primarily being drawn from Figure 1 (below), which presents this information by Commodity and Service Area. 
+
+```{r, echo = FALSE}
+
+print(coicophighlow_plot)
+
+```
+
+::: {.column-margin}
+Commodity and Service Areas: 
+
+- 1.0.0: Food & Non-alcoholic drinks
+- 2.0.0: Alcoholic drinks, tobacco & narcotics
+- 3.0.0: Clothing & Footwear
+- 4.0.0: Housing, fuel & power
+- 5.0.0: Household Goods & Services
+- 6.0.0: Health
+- 7.0.0: Transport
+- 8.0.0: Communication 
+- 9.0.0: Recreation & Culture 
+- 10.0.0: Education 
+- 11.0.0: Restaurants & Hotels 
+- 12.0.0: Miscellaneous goods & services 
+- 13.0.0: Other expenditure 
+
+:::
+
+The changes which can be seen can be grouped into shared or differing changes to the highest and lowest deciles Although no formal statistical analysis has been conducted, the following subsections will highlight in more detail the changes seen.  
+
+#### Shared Proportional Household Increases
+
+From a visual assessment both the highest and lowest deciles of the households surveyed displayed a large (>0.025) increase across the categories of **Food & Non-alcoholic Drinks (COICOP 1.0.0)**, and **Housing, fuel & power (COICOP 4.0.0)**. In addition to smaller (<0.025) increases across the categories of **Household Goods & Services (COICOP 5.0.0)**, **Communication (COICOP 8.0.0)** and **Other Expenditure (COICOP 13.0.0)**. [COICOP 13.0.0 includes: Mortgage Interest Payments, Council Tax, Licences, Fees, Holiday Spending and Money Transfers and Credit.]{.aside}
+
+Interestingly, as a whole the changes in proportional household spending for these Commodity and Service areas is similar, as although the proportion of household spending on Commodity and Service Area 1.0.0 (Food & Non-alcoholic drinks) and 4.0.0 (Housing, fuel & power) are very different, with the lowest decile of households spending a higher proportion of their income on these areas. The difference between 2020 and 2021 for both the highest and lowest deciles have a similar magnitude. 
+
+#### Shared Proportional Household Decreases
+
+From a visual assessment both the highest and lowest deciles of the households surveyed displayed a large (>0.025) decrease across the categories of **Transport (COICOP 7.0.0)**, **Recreation & Culture (COICOP 9.0.0)** and **Restaurants & Hotels (COICOP 11.0.0)**. In addition to smaller (<0.025) decreases across the categories of **Clothing & Footwear (COICOP 3.0.0)**, **Health (COICOP 6.0.0)** and **Miscellaneous good and Services (COICOP 12.0.0)**. [COICOP 12.0.0 includes: Personal Care and Effects, Social Protection, Insurance and other services]{.aside}
+
+Unlike the presented increases however, the magnitude of change is not consistent between the highest and lowest deciles. As for some Commodity and Service Areas, such as Recreation & Culture (COICOP 9.0.0), the observed decrease is larger for the lowest decile, than the highest. 
+
+
+#### Differing Proportional Household Changes
+
+The two main differing proportional household changes relate to **Alcoholic drinks, tobacco & narcotics (COICOP 2.0.0)** and **Education (COICOP 10.0.0)**. The differences between the highest and lowest deciles, relate to the proportional movement for each of these Commodity and Service Areas. For Alcoholic drinks, tobacco & narcotics, a small decrease is seen for the lowest deciles (<0.001), whilst the highest decile presents an increase (<0.01). Although the reason for this difference should not be speculated, this presents an interesting disparity, which should be research further. 
+
+Additionally, one of the most notable differences relates to Education. Where, the lowest decile at in both 2020 and 2021, spends approximately nothing on educational fees. This is understandable, given that Education is a combination of private education tuition fees and school trips. With tuition fees not being requested from the lowest decile and school trips being cancelled or limited due to the COVID pandemic. As a result the large (>0.025) increase which can be observed for the highest decile, is understood. However, further research should be conducted to understand how this differs from previous years, when school trips were available. 
+
+### Impact
+
+These findings, although not formally supported, could propose that as a whole, the cost of living is rising uniformly. Typically being indiscriminate about the households it impacts. However as can be seen by the differences in magnitude when evaluating expenditure decreases between these deciles, there is a more significant reduction in proportional expenditure for the lowest income when examining those Commodity and Service Areas which could be considered luxuries, such as Clothing & Footwear (3.0.0), Recreation & Culture (9.0.0) and Restaurants & Hotels (11.0.0). In theory meaning that the lowest decile of household are more inclined to reduce their spending on what they could consider luxuries in order to deal with the cost of living rises seen. 
+
+The issue here is that the decline is clearly unsustainable, as many of these *luxuries* for the lowest decile are already approaching 0% of household expenditure, meaning that if core Commodity and Service Areas such as Food & Non-alcoholic drinks (1.0.0) and Housing, fuel & power (4.0.0) continue to rise households in the lowest decile will be unable to keep up. 
+

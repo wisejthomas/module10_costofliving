@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.1.163">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Thomas Wise">
+<meta name="dcterms.date" content="2022-09-12">
+
+<title>Module 10: Data Science for Policy: Changes to Household Spending</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="projectreport_files/libs/clipboard/clipboard.min.js"></script>
+<script src="projectreport_files/libs/quarto-html/quarto.js"></script>
+<script src="projectreport_files/libs/quarto-html/popper.min.js"></script>
+<script src="projectreport_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="projectreport_files/libs/quarto-html/anchor.min.js"></script>
+<link href="projectreport_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="projectreport_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="projectreport_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="projectreport_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="projectreport_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body>
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+</div>
+<main class="content page-columns page-full" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Module 10: Data Science for Policy: Changes to Household Spending</h1>
+<p class="subtitle lead">How has proportional household spending changed for the highest and lowest deciles of households?</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Thomas Wise </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">September 12, 2022</p>
+    </div>
+  </div>
+    
+  </div>
+  
+
+</header>
+
+<hr>
+<section id="report-headlines" class="level3">
+<h3 class="anchored" data-anchor-id="report-headlines">Report Headlines:</h3>
+<ul>
+<li>Both the highest and lowest decile of households surveyed experienced large increases (&gt;0.025) in proportional household spending in the <strong>Food &amp; Drinks (COICOP 1.0.0)</strong>, and <strong>Housing, fuel &amp; power (COICOP 4.0.0)</strong>.</li>
+<li>Both the highest and lowest decile of households surveyed experience large decreases (&gt;0.025) in proportional household spending in <strong>Transport (COICOP 7.0.0)</strong>, <strong>Recreation &amp; Culture (COICOP 9.0.0)</strong> and <strong>Restaurants &amp; Hotels (COICOP 11.0.0)</strong></li>
+<li>The highest decile of household also experience large increases (&gt;0.025) in proportional household spending in <strong>Education (COICOP 10.0.0)</strong></li>
+</ul>
+</section>
+<section id="report-summary" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="report-summary">Report Summary</h2>
+<p>This project will explore and identify changes to household spending between 2020 and 2021, focusing on the changes to proportional household expenditure to different Commodity and Service Areas, similar to those reported in the <a href="https://unstats.un.org/unsd/classifications/unsdclassifications/COICOP_2018_-_pre-edited_white_cover_version_-_2018-12-26.pdf">COICOP</a>. Specifically, this project will focus on those households which represent the highest and lowest gross income deciles, surveyed as part of the <a href="https://www.ons.gov.uk/peoplepopulationandcommunity/personalandhouseholdfinances/expenditure/datasets/familyspendingworkbook1detailedexpenditureandtrends#">Living Costs and Food Survey</a>. With these being selected to understand the similarities and differences in spending between households with such a disparity in income.</p>
+<p>To understand the changes in spending between 2020 and 2021, an exploratory data analysis (EDA) was conducted. Where it was decided that comparisons could only be effectively made between deciles through converting gross spending on services to percentile proportions. Since although a gross spending increase of £100 would be equal if comparing changes in gross spending, this £100 change would likely represent a difference in proportion of available gross income for both deciles, resulting in an overall different interpretation when examining these household deciles. Therefore through converting gross spending to a percentage (dividing total gross income by each Commodity or Service area), comparisons can be made effectively.</p>
+<p>Once manipulated and cleaned, data was visualized so relationships between households by year could be assessed. With assessments primarily being drawn from Figure 1 (below), which presents this information by Commodity and Service Area.</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="projectreport_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>Commodity and Service Areas:</p>
+<ul>
+<li>1.0.0: Food &amp; Non-alcoholic drinks</li>
+<li>2.0.0: Alcoholic drinks, tobacco &amp; narcotics</li>
+<li>3.0.0: Clothing &amp; Footwear</li>
+<li>4.0.0: Housing, fuel &amp; power</li>
+<li>5.0.0: Household Goods &amp; Services</li>
+<li>6.0.0: Health</li>
+<li>7.0.0: Transport</li>
+<li>8.0.0: Communication</li>
+<li>9.0.0: Recreation &amp; Culture</li>
+<li>10.0.0: Education</li>
+<li>11.0.0: Restaurants &amp; Hotels</li>
+<li>12.0.0: Miscellaneous goods &amp; services</li>
+<li>13.0.0: Other expenditure</li>
+</ul>
+</div></div><p>The changes which can be seen can be grouped into shared or differing changes to the highest and lowest deciles Although no formal statistical analysis has been conducted, the following subsections will highlight in more detail the changes seen.</p>
+<section id="shared-proportional-household-increases" class="level4 page-columns page-full">
+<h4 class="anchored" data-anchor-id="shared-proportional-household-increases">Shared Proportional Household Increases</h4>
+<div class="page-columns page-full"><p>From a visual assessment both the highest and lowest deciles of the households surveyed displayed a large (&gt;0.025) increase across the categories of <strong>Food &amp; Non-alcoholic Drinks (COICOP 1.0.0)</strong>, and <strong>Housing, fuel &amp; power (COICOP 4.0.0)</strong>. In addition to smaller (&lt;0.025) increases across the categories of <strong>Household Goods &amp; Services (COICOP 5.0.0)</strong>, <strong>Communication (COICOP 8.0.0)</strong> and <strong>Other Expenditure (COICOP 13.0.0)</strong>. </p><div class="no-row-height column-margin column-container"><span class="aside">COICOP 13.0.0 includes: Mortgage Interest Payments, Council Tax, Licences, Fees, Holiday Spending and Money Transfers and Credit.</span></div></div>
+<p>Interestingly, as a whole the changes in proportional household spending for these Commodity and Service areas is similar, as although the proportion of household spending on Commodity and Service Area 1.0.0 (Food &amp; Non-alcoholic drinks) and 4.0.0 (Housing, fuel &amp; power) are very different, with the lowest decile of households spending a higher proportion of their income on these areas. The difference between 2020 and 2021 for both the highest and lowest deciles have a similar magnitude.</p>
+</section>
+<section id="shared-proportional-household-decreases" class="level4 page-columns page-full">
+<h4 class="anchored" data-anchor-id="shared-proportional-household-decreases">Shared Proportional Household Decreases</h4>
+<div class="page-columns page-full"><p>From a visual assessment both the highest and lowest deciles of the households surveyed displayed a large (&gt;0.025) decrease across the categories of <strong>Transport (COICOP 7.0.0)</strong>, <strong>Recreation &amp; Culture (COICOP 9.0.0)</strong> and <strong>Restaurants &amp; Hotels (COICOP 11.0.0)</strong>. In addition to smaller (&lt;0.025) decreases across the categories of <strong>Clothing &amp; Footwear (COICOP 3.0.0)</strong>, <strong>Health (COICOP 6.0.0)</strong> and <strong>Miscellaneous good and Services (COICOP 12.0.0)</strong>. </p><div class="no-row-height column-margin column-container"><span class="aside">COICOP 12.0.0 includes: Personal Care and Effects, Social Protection, Insurance and other services</span></div></div>
+<p>Unlike the presented increases however, the magnitude of change is not consistent between the highest and lowest deciles. As for some Commodity and Service Areas, such as Recreation &amp; Culture (COICOP 9.0.0), the observed decrease is larger for the lowest decile, than the highest.</p>
+</section>
+<section id="differing-proportional-household-changes" class="level4">
+<h4 class="anchored" data-anchor-id="differing-proportional-household-changes">Differing Proportional Household Changes</h4>
+<p>The two main differing proportional household changes relate to <strong>Alcoholic drinks, tobacco &amp; narcotics (COICOP 2.0.0)</strong> and <strong>Education (COICOP 10.0.0)</strong>. The differences between the highest and lowest deciles, relate to the proportional movement for each of these Commodity and Service Areas. For Alcoholic drinks, tobacco &amp; narcotics, a small decrease is seen for the lowest deciles (&lt;0.001), whilst the highest decile presents an increase (&lt;0.01). Although the reason for this difference should not be speculated, this presents an interesting disparity, which should be research further.</p>
+<p>Additionally, one of the most notable differences relates to Education. Where, the lowest decile at in both 2020 and 2021, spends approximately nothing on educational fees. This is understandable, given that Education is a combination of private education tuition fees and school trips. With tuition fees not being requested from the lowest decile and school trips being cancelled or limited due to the COVID pandemic. As a result the large (&gt;0.025) increase which can be observed for the highest decile, is understood. However, further research should be conducted to understand how this differs from previous years, when school trips were available.</p>
+</section>
+<section id="impact" class="level3">
+<h3 class="anchored" data-anchor-id="impact">Impact</h3>
+<p>These findings, although not formally supported, could propose that as a whole, the cost of living is rising uniformly. Typically being indiscriminate about the households it impacts. However as can be seen by the differences in magnitude when evaluating expenditure decreases between these deciles, there is a more significant reduction in proportional expenditure for the lowest income when examining those Commodity and Service Areas which could be considered luxuries, such as Clothing &amp; Footwear (3.0.0), Recreation &amp; Culture (9.0.0) and Restaurants &amp; Hotels (11.0.0). In theory meaning that the lowest decile of household are more inclined to reduce their spending on what they could consider luxuries in order to deal with the cost of living rises seen.</p>
+<p>The issue here is that the decline is clearly unsustainable, as many of these <em>luxuries</em> for the lowest decile are already approaching 0% of household expenditure, meaning that if core Commodity and Service Areas such as Food &amp; Non-alcoholic drinks (1.0.0) and Housing, fuel &amp; power (4.0.0) continue to rise households in the lowest decile will be unable to keep up.</p>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
